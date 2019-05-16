@@ -84,3 +84,5 @@ gce-config/result-container
 mocha.json
 xunit.xml
 
+.coverprofile
+vendor

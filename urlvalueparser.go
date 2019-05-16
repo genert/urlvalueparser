@@ -5,12 +5,13 @@ import (
 	"strings"
 )
 
+var valueDetect = NewValueDetector()
+
 func ReplacePathValues(path, replaceValue string) string {
 	if path == "" || replaceValue == "" {
 		return path
 	}
 
-	valueDetector := NewValueDetector()
 	values := strings.FieldsFunc(path, func(c rune) bool {
 		return c == '/'
 	})
@@ -18,7 +19,7 @@ func ReplacePathValues(path, replaceValue string) string {
 	var result []string
 
 	for _, value := range values {
-		if valueDetector.IsValue(value) {
+		if valueDetect.IsValue(value) {
 			result = append(result, replaceValue)
 		} else {
 			result = append(result, value)

@@ -65,3 +65,38 @@ func TestNewValueDetector_IsValue_JWTToken(t *testing.T) {
 
 	assert.True(t, result)
 }
+
+func TestNewValueDetector_IsValue_Email(t *testing.T) {
+	valueDetector := urlvalueparser.NewValueDetector()
+	result := valueDetector.IsValue("random@email.com")
+
+	assert.True(t, result)
+}
+
+func TestNewValueDetector_IsValue_DataURI(t *testing.T) {
+	valueDetector := urlvalueparser.NewValueDetector()
+	result := valueDetector.IsValue("data:text/vnd-example+xyz;foo=bar;base64,R0lGODdh")
+
+	assert.True(t, result)
+}
+
+func TestNewValueDetector_IsValue_IPV4(t *testing.T) {
+	valueDetector := urlvalueparser.NewValueDetector()
+	result := valueDetector.IsValue("80.235.87.232")
+
+	assert.True(t, result)
+}
+
+func TestNewValueDetector_IsValue_IPV6(t *testing.T) {
+	valueDetector := urlvalueparser.NewValueDetector()
+	result := valueDetector.IsValue("0:0:0:0:0:ffff:50eb:57e8")
+
+	assert.True(t, result)
+}
+
+func TestNewValueDetector_IsValue_SemVer(t *testing.T) {
+	valueDetector := urlvalueparser.NewValueDetector()
+	result := valueDetector.IsValue("2.0.0")
+
+	assert.True(t, result)
+}

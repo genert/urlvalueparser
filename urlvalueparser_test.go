@@ -32,6 +32,21 @@ func TestReplacePathValues(t *testing.T) {
 			replaceValue:  ":id",
 			expectedValue: "/v1/:id/component/:id/action",
 		},
+		{
+			path:          "/something/new/0x323b5d4c32345ced77393b3530b1eed0f346429d/another",
+			replaceValue:  ":id",
+			expectedValue: "/something/new/:id/another",
+		},
+		{
+			path:          "/something/new/0xXYZb5d4c32345ced77393b3530b1eed0f346429d/another",
+			replaceValue:  ":id",
+			expectedValue: "/something/new/0xXYZb5d4c32345ced77393b3530b1eed0f346429d/another",
+		},
+		{
+			path:          "/something/1.0.2/21.235.231.232/another/callme@random.org/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MTYyMzkwMjJ9.tbDepxpstvGdW8TC3G8zg4B6rUYAOvfzdceoH48wgRQ",
+			replaceValue:  ":id",
+			expectedValue: "/something/:id/:id/another/:id/:id",
+		},
 	}
 
 	for _, tt := range tests {
