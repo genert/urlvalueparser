@@ -23,6 +23,8 @@ By default, the following chunks are consider values that will be replaced:
 ### ReplacePathValues(path: String, replacement: String): String
 
 ```go
+import "github.com/genert/urlvalueparser"
+
 result := urlvalueparser.ReplacePathValues("/legit/path/123/user", ":id")
 
 // Following will be printed: /legit/path/:id/user
